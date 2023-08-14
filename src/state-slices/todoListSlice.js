@@ -10,16 +10,19 @@ export const todoListSlice = createSlice({
   initialState,
   reducers: {
     addCard: (state, action) => {
-        state.globalID += 1
-        const card = {
-            "taskname": action.payload,
-             "id": state.globalID
-            }
-        state.tasklist.push(card)
+      state.globalID += 1
+      const card = {
+          "taskname": action.payload,
+            "id": state.globalID
+          }
+      state.tasklist.unshift(card)
     },
+    updateToDoList: (state, action) => {
+      state.tasklist = state.tasklist.filter((task) => task.id !== action.payload)
+    }
   },
 })
 
-export const { addCard } = todoListSlice.actions
+export const { addCard, updateToDoList } = todoListSlice.actions
 
 export default todoListSlice.reducer
