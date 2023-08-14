@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const TaskCard = () => {
-  return (
-    <div className='TODO-card' onClick={"TODO: Strikethrough Name"}>
-        <h3>TODO NAME</h3>
-        <div className='TODO-buttons'>
-            <button onClick={"TODO: UPDATE NAME"}>
-                U
-            </button>
-            <button onClick={"TODO: REMOVE TODO ITEM"}>
-                X
-            </button>
+const TaskCard = ({ task, updateTask}) => {
+
+    const [toggleDone, setToggleDone] = useState(false)
+
+    const handleToggleDone = () => {
+        setToggleDone(!toggleDone)
+    }
+
+    const handleDeleteCard = () => {
+        updateTask(taskList => taskList.filter((item) => item.id !== task.id));
+    }
+
+    return (
+        <div className='TODO-card' onClick={handleToggleDone}>
+            <div>
+                <h3 style={toggleDone?{textDecoration: 'line-through'}:{textDecoration: 'none'}}>{task.taskname}</h3>
+            </div>
+            <div className='TODO-buttons'>
+                <button onClick={() => console.log("Hello")}>
+                    U
+                </button>
+                <button onClick={handleDeleteCard}>
+                    X
+                </button>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default TaskCard
