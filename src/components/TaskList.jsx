@@ -10,7 +10,7 @@ const TaskList = () => {
             <TaskAdder addTask={setTodoList} todoList={todoList} />
             <div className='TODO-card-container'>
                 {
-                    todoList.filter((task) => !task.isDeleted).map((task) => <TaskCard updateTask={setTodoList} task={task} key={task.id} />)
+                    todoList.map((task) => <TaskCard updateTask={setTodoList} task={task} key={task.id} />)
                 }
             </div>
         </div>
