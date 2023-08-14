@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addCard } from '../state-slices/todoListSlice'
+import { addTask } from '../state-slices/todoListSlice'
 
 const TaskAdder = () => {
 
@@ -13,7 +13,7 @@ const TaskAdder = () => {
 
     const handleAddTask = () => {
         if(taskName!=="") {
-            dispatch(addCard(taskName))
+            dispatch(addTask(taskName))
             setTaskName("")
         }
     }

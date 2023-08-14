@@ -9,7 +9,7 @@ export const todoListSlice = createSlice({
   name: 'todoList',
   initialState,
   reducers: {
-    addCard: (state, action) => {
+    addTask: (state, action) => {
       state.globalID += 1
       const card = {
           "taskname": action.payload,
@@ -17,12 +17,17 @@ export const todoListSlice = createSlice({
           }
       state.tasklist.unshift(card)
     },
-    updateToDoList: (state, action) => {
+    deleteTask: (state, action) => {
       state.tasklist = state.tasklist.filter((task) => task.id !== action.payload)
+    },
+    updateTaskName: (state, action) => {
+      state.tasklist.filter((task) => task.id === action.payload.id).forEach((task)=>{
+        task.taskname = action.payload.taskname
+      })
     }
   },
 })
 
-export const { addCard, updateToDoList } = todoListSlice.actions
+export const { addTask, deleteTask, updateTaskName } = todoListSlice.actions
 
 export default todoListSlice.reducer
