@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addCard } from '../state-slices/todoListSlice'
 
-const TaskAdder = ({ addTask, todoList }) => {
+const TaskAdder = () => {
 
-    const [incrementID, setIncrementID] = useState(0)
+    const dispatch = useDispatch()
+
     const [taskName, setTaskName] = useState("")
 
     const handleTaskNameChange = (input) => setTaskName(input.target.value)
@@ -10,8 +13,7 @@ const TaskAdder = ({ addTask, todoList }) => {
 
     const handleAddTask = () => {
         if(taskName!=="") {
-            addTask([{ "id": incrementID, "taskname": taskName }, ...todoList])
-            setIncrementID(incrementID + 1)
+            dispatch(addCard(taskName))
             setTaskName("")
         }
     }
