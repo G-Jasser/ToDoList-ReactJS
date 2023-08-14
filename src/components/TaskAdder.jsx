@@ -5,7 +5,7 @@ const TaskAdder = ({ addTask, todoList }) => {
     const [incrementID, setIncrementID] = useState(0)
     const [taskName, setTaskName] = useState("")
 
-    const handleTaskNameChange = (el) => setTaskName(el.target.value)
+    const handleTaskNameChange = (input) => setTaskName(input.target.value)
 
 
     const handleAddTask = () => {
