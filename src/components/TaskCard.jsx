@@ -9,8 +9,8 @@ const TaskCard = ({ task }) => {
     }
 
     return (
-        <div className='TODO-card' onClick={handleToggleDone}>
-            <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div className='TODO-card'>
+            <div style={{display:'flex', justifyContent:'space-between'}} onClick={handleToggleDone}>
                 <h3 style={toggleDone?{textDecoration: 'line-through'}:{textDecoration: 'none'}} >{task.taskname}</h3>
             </div>
         </div>
