@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { updateTaskName, deleteTask } from '../state-slices/todoListSlice'
+import { updateTaskName, deleteTask, toggleTaskDone } from '../state-slices/todoListSlice'
 
 const TaskCard = ({ task }) => {
 
     const dispatch = useDispatch()
 
-    const [toggleDone, setToggleDone] = useState(false)
-
     const handleToggleDoneClick = () => {
-        setToggleDone(!toggleDone)
+        dispatch(toggleTaskDone(task.id))
     }
 
     const handleDeleteTaskClick = () =>{
@@ -46,7 +44,7 @@ const TaskCard = ({ task }) => {
     return (
         <div className='TODO-card'>
             <div style={{display:'flex', justifyContent:'space-between'}} onClick={handleToggleDoneClick}>
-                <h3 className='prevent-select' style={toggleDone?{textDecoration: 'line-through'}:{textDecoration: 'none'}} >{task.taskname}</h3>
+                <h3 className='prevent-select' style={task.isDone?{textDecoration: 'line-through'}:{textDecoration: 'none'}} >{task.taskname}</h3>
             </div>
             
             {
